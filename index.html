@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Apphive — small, useful web apps. Educational tools, learning resources, and free utilities." />
+  <meta name="author" content="Apphive" />
+  <meta property="og:title" content="Apphive — useful web apps" />
+  <meta property="og:description" content="A small studio building free, focused web tools. Including TrafficNZ — the New Zealand road code quiz." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://apphive.co.in/" />
+  <link rel="canonical" href="https://apphive.co.in/" />
+  <title>Apphive — Useful Web Apps</title>
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3532638282178669"
+    crossorigin="anonymous"></script>
+
+  <style>
+    :root {
+      --bg: #0f1117;
+      --bg-2: #161924;
+      --card: #1c2030;
+      --border: #2a2f42;
+      --text: #e6e8ee;
+      --muted: #8a92a6;
+      --accent: #4f8cff;
+      --accent-2: #7dd3fc;
+      --success: #4ade80;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-2); text-decoration: underline; }
+    .container { max-width: 980px; margin: 0 auto; padding: 0 20px; }
+
+    /* Header */
+    header {
+      background: var(--bg-2);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+    header .container { display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; }
+    .logo span { color: var(--accent); }
+    nav ul { display: flex; gap: 24px; list-style: none; }
+    nav a { color: var(--muted); font-size: 14px; font-weight: 500; }
+    nav a:hover { color: var(--text); text-decoration: none; }
+    @media (max-width: 600px) { nav ul { gap: 14px; } nav a { font-size: 13px; } }
+
+    /* Hero */
+    .hero {
+      padding: 80px 0 60px;
+      text-align: center;
+      background: radial-gradient(ellipse at top, rgba(79,140,255,0.12), transparent 60%);
+    }
+    .hero h1 {
+      font-size: clamp(32px, 6vw, 52px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+      line-height: 1.15;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero p {
+      font-size: clamp(15px, 2.2vw, 18px);
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto 28px;
+    }
+    .hero .cta {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 15px;
+    }
+    .hero .cta:hover { background: #6a9eff; text-decoration: none; }
+
+    /* Sections */
+    section { padding: 60px 0; }
+    section h2 {
+      font-size: clamp(24px, 4vw, 32px);
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+    section .lead {
+      color: var(--muted);
+      font-size: 15px;
+      margin-bottom: 32px;
+      max-width: 640px;
+    }
+
+    /* Apps grid */
+    .apps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .app-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px;
+      transition: transform 0.15s, border-color 0.15s;
+    }
+    .app-card:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .app-card.featured { border-color: var(--accent); position: relative; }
+    .app-card.featured::before {
+      content: 'Featured';
+      position: absolute;
+      top: -10px; right: 14px;
+      background: var(--accent);
+      color: white;
+      font-size: 11px;
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .app-emoji { font-size: 36px; margin-bottom: 12px; }
+    .app-card h3 { font-size: 18px; margin-bottom: 6px; }
+    .app-card p { color: var(--muted); font-size: 13px; margin-bottom: 14px; }
+    .app-card .status { font-size: 11px; color: var(--success); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+    .app-card .status.soon { color: var(--muted); }
+    .app-card a.app-link { display: inline-block; margin-top: 12px; font-size: 13px; font-weight: 600; }
+
+    /* About / privacy / contact */
+    .prose p { color: var(--muted); margin-bottom: 12px; max-width: 720px; }
+    .prose strong { color: var(--text); }
+    .prose ul { margin: 8px 0 16px 22px; color: var(--muted); }
+    .prose ul li { margin-bottom: 6px; }
+    .prose h3 { font-size: 17px; margin: 20px 0 8px; color: var(--text); }
+
+    /* Ad slots */
+    .ad-wrap {
+      margin: 32px auto;
+      padding: 12px;
+      background: rgba(255,255,255,0.02);
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      max-width: 728px;
+      text-align: center;
+    }
+    .ad-wrap small { color: #555; font-size: 10px; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 6px; }
+
+    /* Footer */
+    footer {
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      margin-top: 40px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    footer a { color: var(--muted); margin: 0 8px; }
+    footer .copy { margin-top: 12px; font-size: 12px; opacity: 0.7; }
+
+    .divider { height: 1px; background: var(--border); margin: 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo">App<span>hive</span></div>
+      <nav>
+        <ul>
+          <li><a href="#apps">Apps</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#privacy">Privacy</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Small, useful <span>web apps</span></h1>
+        <p>Apphive builds free, focused tools for learning and everyday use. No accounts, no clutter, no fluff — just things that work in your browser.</p>
+        <a href="#apps" class="cta">Browse our apps →</a>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section id="apps">
+      <div class="container">
+        <h2>Our apps</h2>
+        <p class="lead">Free to use. Mobile-friendly. Built with care.</p>
+
+        <div class="apps">
+          <div class="app-card featured">
+            <div class="app-emoji">🚦</div>
+            <h3>TrafficNZ</h3>
+            <p>The complete New Zealand road code quiz. Practise for your Learner Licence with 120+ questions, real NZTA sign images, mock tests, daily challenges, and spaced repetition.</p>
+            <div class="status">Live</div>
+            <a class="app-link" href="https://nz.apphive.co.in/" target="_blank" rel="noopener">Open TrafficNZ →</a>
+          </div>
+
+          <div class="app-card">
+            <div class="app-emoji">📝</div>
+            <h3>Quick Notes</h3>
+            <p>A no-account, in-browser scratchpad. Type, format, save locally — nothing leaves your device.</p>
+            <div class="status soon">Coming soon</div>
+          </div>
+
+          <div class="app-card">
+            <div class="app-emoji">⏱️</div>
+            <h3>Focus Timer</h3>
+            <p>Pomodoro-style focus sessions with custom intervals, ambient sounds, and a clean dashboard.</p>
+            <div class="status soon">Coming soon</div>
+          </div>
+        </div>
+
+        <!-- Ad slot 1 (in-content) -->
+        <div class="ad-wrap">
+          <small>Sponsored</small>
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-3532638282178669"
+               data-ad-slot=""
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section id="about">
+      <div class="container prose">
+        <h2>About Apphive</h2>
+        <p>Apphive is an independent project building small, focused web apps that solve specific problems well. We believe most software is bloated, ad-heavy, and tries to do too much. Our apps do one thing, do it cleanly, and respect your time.</p>
+        <p>Everything we build is browser-based and mobile-friendly. There are no logins, no tracking pixels beyond standard analytics, and no subscriptions. Where we run ads (like Google AdSense on this site), it's to keep the apps free for everyone.</p>
+        <h3>Built with</h3>
+        <ul>
+          <li>TypeScript and modern web standards</li>
+          <li>No frameworks where vanilla works fine</li>
+          <li>Static hosting — fast, secure, cheap</li>
+          <li>Open content where appropriate (e.g. Wikimedia Commons road sign artwork in TrafficNZ)</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section id="privacy">
+      <div class="container prose">
+        <h2>Privacy policy</h2>
+        <p><strong>Last updated:</strong> April 2026</p>
+
+        <h3>What we collect</h3>
+        <p>Apphive itself does not collect personal information. We do not require accounts, and our apps store user data (such as quiz progress in TrafficNZ) in your own browser using <code>localStorage</code> — not on our servers.</p>
+
+        <h3>Cookies and analytics</h3>
+        <p>We may use Google Analytics to understand aggregate usage patterns. This involves first-party cookies that record anonymised information such as page views, browser type, and country. You can opt out via your browser settings or the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics Opt-out Browser Add-on</a>.</p>
+
+        <h3>Advertising</h3>
+        <p>This site uses Google AdSense to display advertisements. Google and its partners may use cookies to serve ads based on your prior visits to this and other websites. You can opt out of personalised advertising at <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google Ads Settings</a> or learn more about how ad networks use information at <a href="https://www.aboutads.info/" target="_blank" rel="noopener">aboutads.info</a>.</p>
+        <p>For visitors from the EU, UK, or other jurisdictions requiring consent for personalised advertising, your preferences are managed through Google's Funding Choices consent banner where applicable.</p>
+
+        <h3>Third-party services</h3>
+        <p>Our apps may load resources from third-party sources such as Wikimedia Commons (for road sign images in TrafficNZ). These services have their own privacy practices governed by their respective policies.</p>
+
+        <h3>Children's privacy</h3>
+        <p>Our apps are suitable for general audiences but are not directed at children under 13. We do not knowingly collect information from children under 13.</p>
+
+        <h3>Your rights</h3>
+        <p>Because we do not collect or store personal information on our servers, there is generally nothing to access, modify, or delete. Local data stored by our apps in your browser can be cleared at any time through your browser's settings.</p>
+
+        <h3>Contact</h3>
+        <p>For privacy questions, email <a href="mailto:hello@apphive.co.in">hello@apphive.co.in</a>.</p>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section id="contact">
+      <div class="container prose">
+        <h2>Contact</h2>
+        <p>Questions, feedback, bug reports, or app ideas — all welcome.</p>
+        <p><strong>Email:</strong> <a href="mailto:hello@apphive.co.in">hello@apphive.co.in</a></p>
+        <p>We aim to reply within a few days.</p>
+
+        <!-- Ad slot 2 (footer area) -->
+        <div class="ad-wrap">
+          <small>Sponsored</small>
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-3532638282178669"
+               data-ad-slot=""
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div>
+        <a href="#apps">Apps</a> ·
+        <a href="#about">About</a> ·
+        <a href="#privacy">Privacy</a> ·
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="copy">© 2026 Apphive. Made with care.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Activate AdSense slots
+    (function () {
+      try {
+        var ads = document.querySelectorAll('ins.adsbygoogle');
+        for (var i = 0; i < ads.length; i++) {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        }
+      } catch (e) { /* AdSense not loaded yet — fine */ }
+    })();
+  </script>
+</body>
+</html>
